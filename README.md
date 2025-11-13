@@ -10,6 +10,7 @@
   Gas sensor (MQ-2)
 	
 ## Circuit Diagram:
+<img width="1005" height="831" alt="image" src="https://github.com/user-attachments/assets/cc5e2f4d-9520-4bb6-a18f-f4dc880a4410" />
 
  
 
@@ -57,10 +58,46 @@ Step 7: Save Your Work
 •	Save the Circuit: Click "Save" to keep your circuit design and code for future use.
 
 ## Program:
+```
+int gasSensor = A0;     
+int buzzer = 12;        
+int led = 10;           
+
+int threshold = 150;    
+void setup() {
+  pinMode(buzzer, OUTPUT);
+  pinMode(led, OUTPUT);
+  pinMode(gasSensor, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int gasValue = analogRead(gasSensor);   
+  Serial.print("Gas Sensor Value: ");
+  Serial.println(gasValue);
+
+  if (gasValue > threshold) {
+    digitalWrite(led, HIGH);   
+    tone(buzzer, 2000);   
+    delay(300);
+    noTone(buzzer);       
+    delay(300);
+
+  } else {
+    digitalWrite(led, LOW);   
+    noTone(buzzer);            
+    delay(200);
+  }
+}
+```
 
 ## Output:
 
    
 
-## Result:
+https://github.com/user-attachments/assets/5a899b30-0632-4d2c-98e2-fcee183c0502
 
+
+
+## Result:
+The quality of air is measured using Gas Sensor MQ-2 with Arduino UNO Board/ESP-32 using Tinker CAD Verified Successfully.
